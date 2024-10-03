@@ -234,6 +234,19 @@ const DashboardPage = () => {
                                 </motion.div>
                             </Link>
                         </button>
+                        <button>
+                            <Link to="/bingo">
+                                <motion.div
+                                    className='lg:p-10 p-4 m-1 bg-gray-800 bg-opacity-50 rounded-lg border border-gray-700'
+                                    whileHover={{ scale: 1.05 }}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.2 }}
+                                >
+                                    <h3 className='text-xl font-semibold text-white mb-3'>BINGO</h3>
+                                </motion.div>
+                            </Link>
+                        </button>
                     </center>
                 </div>
                 <motion.div

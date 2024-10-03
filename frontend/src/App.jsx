@@ -8,6 +8,8 @@ import DashboardPage from "./pages/dashboard/DashboardPage";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import ViewCustomers from "./pages/viewCustomer/ViewCustomers";
+import Bingo from "./pages/games/bingo"
+
 
 import LoadingSpinner from "./components/LoadingSpinner";
 
@@ -93,12 +95,19 @@ function App() {
 						</ProtectedRoute>
 					}
 				/>
+				<Route
+					path='/bingo'
+					element={
+						<ProtectedRoute>
+							<Bingo />
+						</ProtectedRoute>
+					}
+				/>
 
 
+				{/*.................... authentication routes.................... */}
 
-{/*.................... authentication routes.................... */}
-				
-				
+
 				<Route
 					path='/signup'
 					element={
