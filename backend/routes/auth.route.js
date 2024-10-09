@@ -11,6 +11,7 @@ import {
 import { verifyToken } from "../middleware/verifyToken.js";
 import { CustomerReg, GetCustomers } from "../controllers/customer.controller.js";
 import { AddPlans, showPlan } from "../controllers/plans.controller.js";
+import { BingoGet } from "../controllers/bingo.controller.js";
 
 
 const router = express.Router();
@@ -41,6 +42,12 @@ router.post("/addplan",AddPlans);
 router.post("/showplan",showPlan);
 
 // ...............plan routes end........................
+
+// ...............bingo routes ........................
+
+router.post("/bingoget",BingoGet)
+router.post("/checkwin",checkAuth)
+
 
 
 export default router;
