@@ -6,10 +6,11 @@ import { Table, TableHead, TableRow, TableCell } from "../../components/ui/table
 import { Header } from "../componentPages/Header";
 
 const Bingo = () => {
-    const { unsortnum, BingoGet } = useAuthStore();
+    const { unsortnum1,unsortnum2, BingoGet } = useAuthStore();
+
     const [clickedNumbers, setClickedNumbers] = useState(new Set());
     const [winMessage, setWinMessage] = useState('');
-
+    const [message, setMessage] = useState('');
     // Winning patterns based on the indices
     const winPs = [
         [0, 1, 2, 3, 4],
@@ -43,27 +44,29 @@ const Bingo = () => {
             return newClicked;
         });
     };
-    const message = ["B", "I", "N", "G", "O"]
-    const checkWin = async () => {
+    const messageValue = ["B", "I", "N", "G", "O"]
+
+    const checkWin = () => {
         let clickedArray = Array.from(clickedNumbers);
-        console.log(clickedArray)
+        let satisfiedPatterns = 0;
+        let indexVal=1
         for (const pattern of winPs) {
-            // console.log(pattern)
-
-            if (pattern.every(index => clickedArray.includes(unsortnum[index]))) {
-                // const repPattern = await clickedArray.find(pattern)
-                console.log(pattern)
-                const matchedIndex = pattern;
-
-                setWinMessage(message);
-                 clickedArray=[]
-                 console.log(clickedArray)
-                return;
+            if (pattern.every(index => clickedArray.includes(unsortnum1[index]))) {
+            setMessage( messageValue.slice(0,indexVal));
+                indexVal++;
+                satisfiedPatterns++;
+                if (satisfiedPatterns >= 5) {
+                    break;
+                }
             }
         }
-        setWinMessage('');
-    };
 
+        if (satisfiedPatterns >= 5) {
+            setWinMessage('you win');
+        } else {
+            setWinMessage('');
+        }
+    };
     return (
         <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -73,21 +76,53 @@ const Bingo = () => {
             className='w-full min-h-screen mx-auto flex flex-col bg-gradient-to-r from-slate-900 to-slate-700 bg-opacity-80 backdrop-filter backdrop-blur-lg'>
             <Header />
 
-            <div className="container mx-auto px-4">
-                <Card>
+            <div className="container mx-auto px-4 flex gap-4 justify-center items-center">
+                <Card className={"w-1/2 mx-auto"}>
                     <CardContent>
                         <Table>
                             <TableRow>
-                                <TableHead id='b'>B</TableHead>
-                                <TableHead id='i'>I</TableHead>
-                                <TableHead id='n'>N</TableHead>
-                                <TableHead id='g'>G</TableHead>
-                                <TableHead id='o'>O</TableHead>
+                                <TableHead  id='b'><h1>{message[0]}</h1></TableHead>
+                                <TableHead  id='b'><h1>{message[1]}</h1></TableHead>
+                                <TableHead  id='b'><h1>{message[2]}</h1></TableHead>
+                                <TableHead  id='b'><h1>{message[3]}</h1></TableHead>
+                                <TableHead  id='b'><h1>{message[4]}</h1></TableHead>
+
                             </TableRow>
-                            {unsortnum.length ? (
+                            {unsortnum1.length ? (
                                 Array.from({ length: 5 }).map((_, rowIndex) => (
                                     <TableRow key={rowIndex}>
-                                        {unsortnum.slice(rowIndex * 5, rowIndex * 5 + 5).map((number, index) => (
+                                        {unsortnum1.slice(rowIndex * 5, rowIndex * 5 + 5).map((number, index) => (
+                                            <TableCell key={index}>
+                                                <button
+                                                    className={`w-full h-12 rounded ${clickedNumbers.has(number) ? 'strickout' : 'bg-green-600 text-white hover:bg-sky-700'}`}
+                                                    onClick={() => handleClick(number)}
+                                                >
+                                                    {number}
+                                                </button>
+                                            </TableCell>
+                                        ))}
+                                    </TableRow>
+                                ))
+                            ) : (
+                                <h1>No numbers available</h1>
+                            )}
+                        </Table>
+                        <div className="flex">
+                            {winMessage && <h2 className="text-black">{winMessage}</h2>}
+                        </div>
+                    </CardContent>
+                </Card>
+                <Card className={"w-1/2 mx-auto"}>
+                    <CardContent>
+                        <Table>
+                            <TableRow>
+                                <TableHead colSpan={"5"} id='b'><h1>computer</h1></TableHead>
+
+                            </TableRow>
+                            {unsortnum2.length ? (
+                                Array.from({ length: 5 }).map((_, rowIndex) => (
+                                    <TableRow key={rowIndex}>
+                                        {unsortnum2.slice(rowIndex * 5, rowIndex * 5 + 5).map((number, index) => (
                                             <TableCell key={index}>
                                                 <button
                                                     className={`w-full h-12 rounded ${clickedNumbers.has(number) ? 'strickout' : 'bg-green-600 text-white hover:bg-sky-700'}`}

@@ -22,7 +22,7 @@ export const Header = () => {
         <header className="sticky top-0 left-0 right-0 shadow-md flex items-center justify-between p-4">
             <div className="flex items-center">
                 <a href="/" className="flex items-center">
-                    <img src="../assets/lic.svg" alt="Logo" className="h-10" />
+                    <img src="../assets/lic.svg" alt="Logo" className="h-10 ml-3" />
                 </a>
             </div>
             <DropdownMenu>

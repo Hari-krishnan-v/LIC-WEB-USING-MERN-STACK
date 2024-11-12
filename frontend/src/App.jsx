@@ -8,14 +8,18 @@ import DashboardPage from "./pages/dashboard/DashboardPage";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import ViewCustomers from "./pages/viewCustomer/ViewCustomers";
+
+
+// ................./game page imports...........................
 import Bingo from "./pages/games/bingo"
+import Chess from "@/pages/games/chess.jsx";
 
 
 import LoadingSpinner from "./components/LoadingSpinner";
 
 import { Toaster } from "react-hot-toast";
 import { useAuthStore } from "./store/authStore";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import ViewPlans from "./pages/plans/plans";
 import AddPlans from "./pages/AddPlans/addPlans";
 
@@ -95,11 +99,23 @@ function App() {
 						</ProtectedRoute>
 					}
 				/>
+
+				{/*.................... Games routes.................... */}
+
+
 				<Route
 					path='/bingo'
 					element={
 						<ProtectedRoute>
 							<Bingo />
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					path='/chess'
+					element={
+						<ProtectedRoute>
+							<Chess />
 						</ProtectedRoute>
 					}
 				/>

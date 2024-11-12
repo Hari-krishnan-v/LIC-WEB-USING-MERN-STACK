@@ -85,12 +85,12 @@ const DashboardPage = () => {
           
             <Header/>
 
-            <Carousel plugins={[Autoplay({ delay: 2000 })]} className="  ">
-                <CarouselContent>
-                    <CarouselItem><img src="../public/banner1.jpg" alt="" /></CarouselItem>
-                    <CarouselItem><img src="../public/banner2.jpg" alt="" /></CarouselItem>
-                    <CarouselItem><img src="../public/banner3.jpg" alt="" /></CarouselItem>
-                    <CarouselItem><img src="../public/banner4.jpg" alt="" /></CarouselItem>
+            <Carousel plugins={[Autoplay({ delay: 2000 })]} className=" w-3/4 mx-auto mt-10  ">
+                <CarouselContent className={"rounded-2xl"}>
+                    <CarouselItem><img src="../public/banner1.jpg" className={"rounded-2xl"} alt="" /></CarouselItem>
+                    <CarouselItem><img src="../public/banner2.jpg" className={"rounded-2xl"} alt="" /></CarouselItem>
+                    <CarouselItem><img src="../public/banner3.jpg" className={"rounded-2xl"} alt="" /></CarouselItem>
+                    <CarouselItem><img src="../public/banner4.jpg" className={"rounded-2xl"} alt="" /></CarouselItem>
                 </CarouselContent>
                 <CarouselPrevious />
                 <CarouselNext />
@@ -99,7 +99,7 @@ const DashboardPage = () => {
             <div className="pt-4 items-center m-5">
                 <div className='gap-4 flex-wrap justify-center'>
                     <center>
-                        <Dialog>
+                        <Dialog >
                             <DialogTrigger>
                                 <motion.div
                                     className='lg:p-10 p-4 m-1 bg-gray-800 bg-opacity-50 rounded-lg border border-gray-700'
@@ -111,7 +111,7 @@ const DashboardPage = () => {
                                     <h3 className='text-xl font-semibold text-white mb-3'>Add Customer</h3>
                                 </motion.div>
                             </DialogTrigger>
-                            <DialogContent>
+                            <DialogContent className={" bg-transparent backdrop-blur-3xl text-white"}>
                                 <ToastContainer />
                                 <DialogHeader>
                                     <DialogTitle>Add Customer</DialogTitle>
@@ -246,6 +246,18 @@ const DashboardPage = () => {
                                     <h3 className='text-xl font-semibold text-white mb-3'>BINGO</h3>
                                 </motion.div>
                             </Link>
+                        </button><button>
+                            <Link to="/chess">
+                                <motion.div
+                                    className='lg:p-10 p-4 m-1 bg-gray-800 bg-opacity-50 rounded-lg border border-gray-700'
+                                    whileHover={{ scale: 1.05 }}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.2 }}
+                                >
+                                    <h3 className='text-xl font-semibold text-white mb-3'>Chess</h3>
+                                </motion.div>
+                            </Link>
                         </button>
                     </center>
                 </div>
@@ -256,16 +268,7 @@ const DashboardPage = () => {
                     transition={{ delay: 0.6 }}
                     className='mt-4 mb-3 flex'
                 >
-                    <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={handleLogout}
-                        className='py-3 px-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white 
-                        font-bold rounded-lg shadow-lg hover:from-green-600 hover:to-emerald-700
-                        focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900'
-                    >
-                        Logout
-                    </motion.button>
+
                 </motion.div>
             </div>
         </motion.div>

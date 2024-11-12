@@ -11,7 +11,8 @@ export const useAuthStore = create((set) => ({
 	user: null,
 	customers: [],
 	plan:[],
-	unsortnum:[],
+	unsortnum1:[],
+	unsortnum2:[],
 	isAuthenticated: false,
 	error: null,
 	isLoading: false,
@@ -148,7 +149,7 @@ export const useAuthStore = create((set) => ({
 		set({isLoading:true, error: null});
 		try {
 			const response = await axios.post(`${API_URL}/bingoget`); // Adjust the endpoint as necessary
-			set({ unsortnum: response.data.data, isLoading: false });
+			set({ unsortnum1: response.data.unsortnum1,unsortnum2: response.data.unsortnum2, isLoading: false });
 
 		} catch (error) {
 			set({ error: error.response.data.message || "Error on adding plan", isLoading: false });
